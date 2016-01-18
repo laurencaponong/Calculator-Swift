@@ -12,10 +12,11 @@ enum modes {
     case NOT_SET
     case ADDITION
     case SUBTRACTION
+    case MULTIPLICATION
+    case DIVISION
 }
 
 class ViewController: UIViewController {
-
 
     var labelString: String = "0"
     var currentMode:modes = modes.NOT_SET
@@ -23,7 +24,6 @@ class ViewController: UIViewController {
     var lastButtonWasMode: Bool = false
     @IBOutlet weak var numberLabel: UILabel!
     
-    //number buttons tapped
     @IBAction func tapped0(sender: AnyObject) {tappedNumber(0)}
     @IBAction func tapped1(sender: AnyObject) {tappedNumber(1)}
     @IBAction func tapped2(sender: AnyObject) {tappedNumber(2)}
@@ -36,6 +36,9 @@ class ViewController: UIViewController {
     @IBAction func tapped9(sender: AnyObject) {tappedNumber(9)}
     
     
+    @IBAction func tappedMultiply(sender: AnyObject) {changeMode(modes.MULTIPLICATION)}
+    
+    @IBAction func tappedDivide(sender: AnyObject) {changeMode(modes.DIVISION)}
     
     @IBAction func tappedPlus(sender: AnyObject) {changeMode(modes.ADDITION)}
     
@@ -57,6 +60,14 @@ class ViewController: UIViewController {
         
         else if currentMode == modes.SUBTRACTION {
             savedNum -= num
+        }
+        
+        else if currentMode == modes.MULTIPLICATION {
+            savedNum *= num
+        }
+        
+        else if currentMode == modes.DIVISION {
+            savedNum /= num
         }
         
         currentMode = modes.NOT_SET
